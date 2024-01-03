@@ -1,0 +1,13 @@
+.row-thead > th {
+    border: 1px solid #333;
+}
+.row-tbody{
+    text-align: center;
+}
+.row-tbody > td {
+    border: 1px solid #333;
+}
+.ant-popconfirm-buttons button {
+    color: black;
+    border: 0.5px solid slategray;
+  }

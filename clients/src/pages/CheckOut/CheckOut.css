@@ -1,0 +1,60 @@
+.info-delivery{
+    display: flex;
+    margin-bottom: 20px;
+   
+}
+.info-delivery input{
+    width: 338.98px;
+    height: 44px;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.info-email{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+}
+.info-email input{
+    width: 681.6px;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+
+}
+.info-address {
+    display: flex;
+    flex-direction: row;
+}
+.info-address select{
+    width: 218.11px;
+    height: 43.6px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.info-message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+}
+.info-message textarea{
+    width: 681.6px;
+    height: 109.6px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+
+}
+
+
+.total-cart{
+    width: 359.4px;
+    height: fit-content;
+    background-color: #f6f6f6;
+    margin-bottom: 20px;
+}

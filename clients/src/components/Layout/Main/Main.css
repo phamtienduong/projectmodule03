@@ -1,0 +1,195 @@
+.item {
+    /* background-color: gold;
+    border: 1px solid gray; */
+    min-height: 50vw;
+}
+.content{
+    display: grid;
+    grid-template-areas: 
+    "p1 p2 p3"
+    "p4 p5 p6";
+    grid-template-rows: 50vw 50vw  ;
+    grid-template-columns: 33vw 33vw 33vw;
+    margin-top: 5px ;
+}
+.p1{
+    grid-area: p1;
+    /* background-color: aqua; */
+    margin-right: 3px;
+    margin-bottom: 3px;
+    background-image: url(https://theme.hstatic.net/200000549029/1000902525/14/home_banner_image_1.jpg?v=2926);
+    background-size: cover;
+    position: relative;
+}
+.p1_content{
+    padding: 15px 15px 25px 30px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.p1 span{
+    color: #fff;
+    font-size: 35px;
+
+}
+.p1 a{
+    color:#fff ;
+    text-decoration: none;
+}
+.p2{
+    grid-area: p2;
+    /* background-color: rebeccapurple; */
+    margin-right: 3px;
+    margin-bottom: 3px;
+    background-image: url(https://theme.hstatic.net/200000549029/1000902525/14/home_banner_image_2.jpg?v=2926);
+    background-size: cover;
+    position: relative;
+}
+.p2_content{
+    padding: 15px 15px 25px 30px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.p2 span{
+    color: #fff;
+    font-size: 35px;
+
+}
+.p2 a{
+    color:#fff ;
+    text-decoration: none;
+}
+.p3{
+    grid-area: p3;
+    /* background-color: red; */
+    margin-right: 3px;
+    margin-bottom: 3px;
+    background-image: url(https://theme.hstatic.net/200000549029/1000902525/14/home_banner_image_3.jpg?v=2926);
+    background-size: cover;
+    position: relative;
+
+}
+.p3_content{
+    padding: 15px 15px 25px 30px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.p3 span{
+    color: #fff;
+    font-size: 35px;
+
+}
+.p3 a{
+    color:#fff ;
+    text-decoration: none;
+}
+.p4{
+    grid-area: p4;
+    /* background-color: aquamarine; */
+    margin-right: 3px;
+    margin-bottom: 3px;
+    background-image: url(https://theme.hstatic.net/200000549029/1000902525/14/home_banner_image_4.jpg?v=2926);
+    background-size: cover;
+    position: relative;
+}
+.p4_content{
+    padding: 15px 15px 25px 30px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.p4 span{
+    color: #fff;
+    font-size: 35px;
+
+}
+.p4 a{
+    color:#fff ;
+    text-decoration: none;
+}
+.p5{
+    grid-area: p5;
+    /* background-color: darkblue; */
+    margin-right: 3px;
+    margin-bottom: 3px;
+    background-image: url(https://theme.hstatic.net/200000549029/1000902525/14/home_banner_image_5.jpg?v=2926);
+    background-size: cover;
+    position: relative;
+}
+.p5_content{
+    padding: 15px 15px 25px 30px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.p5 span{
+    color: #fff;
+    font-size: 35px;
+
+}
+.p5 a{
+    color:#fff ;
+    text-decoration: none;
+}
+.p6{
+    grid-area: p6;
+    /* background-color: yellow; */
+    margin-right: 3px;
+    margin-bottom: 3px;
+    background-image: url(https://theme.hstatic.net/200000549029/1000902525/14/home_banner_image_6.jpg?v=2926);
+    background-size: cover;
+    position: relative;
+}
+.p6_content{
+    padding: 15px 15px 25px 30px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.p6 span{
+    color: #fff;
+    font-size: 35px;
+
+}
+.p6 a{
+    color:#fff ;
+    text-decoration: none;
+}
+
+.banner_sale{
+   
+    height: 40vw;
+    width: 99vw;
+    background-image: url(/src/assets/img/index-banner/home_banner_full_image.webp);
+    background-size: cover;
+}
+
+.section{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section_title h2{
+    font-size: 32px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.blog{
+    display: flex;
+}
+.blog_1 {
+    width:50vw;
+    height: 31vw;
+    background-image: url(/src/assets/img/index-banner/home_banner_blog_1.webp);
+    background-size: cover;
+}
+.blog_2{
+    width:50vw;
+    height: 31vw;
+    background-image: url(/src/assets/img/index-banner/home_banner_blog_2.webp);
+    background-size: cover;
+    margin-left: 3px;
+}

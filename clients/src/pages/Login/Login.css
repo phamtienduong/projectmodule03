@@ -1,0 +1,32 @@
+.formLogin{
+    width: 370px;
+    height: 310px;
+    border: none;
+    margin: 80px auto;
+    background: #FFFFFF;
+
+}
+#formTitle{
+    text-align: center;
+}
+.inputLogin{
+    text-align: center;
+}
+.inputLogin input{
+    width: 100%;
+    height: 48px;
+    border: 0;
+    background: #F2F2F2;
+    color: #222;
+    padding: 0 20px;
+    /* margin-bottom: 20px; */
+}
+.inputLogin button{
+    width: 100%;
+    height: 48px;
+    border: 0;
+    background:#222222;
+    color: #fff;
+    padding: 0 20px;
+    margin: 20px 0;
+}

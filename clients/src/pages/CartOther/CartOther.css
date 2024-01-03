@@ -1,0 +1,36 @@
+.container-cart{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+.thead-cart {
+    background-color: #f6f6f6;
+    color: #7e7e7e;
+    font-size: 14px;
+}
+.content-order{
+    padding: 24px;
+}
+.order-summary{
+    width: 350px;
+    height: 374px;
+    background-color: #f6f6f6;
+}
+
+.list_product {
+    flex-grow: 1;
+}
+.list_product > table {
+    width: 100%;
+}
+
+.btn-quantity {
+    border: 1px solid #a09f9f;
+    border-radius: 3px;
+    padding: 5px 15px;
+}
+.ant-popconfirm-buttons button {
+    color: black;
+    border: 0.5px solid slategray;
+  }

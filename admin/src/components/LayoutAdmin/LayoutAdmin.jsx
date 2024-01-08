@@ -3,6 +3,16 @@ import "./LayoutAdmin.scss"
 import {Link} from "react-router-dom"
 import AdminProduct from '../AdminProduct/AdminProduct'
 export default function LayoutAdmin({children}) {
+  const handleLogOut = ()=>{
+    localStorage.clear()
+  }
+  const isAuthenticated = () => {
+    const token = localStorage.getItem('admin_token');
+    return !!token; // Trả về true nếu có token, ngược lại là false
+  };
+  if (!isAuthenticated()) {
+    return window.location.href='/';
+    } 
   return (
     <div>
       <header role="banner">
@@ -12,7 +22,7 @@ export default function LayoutAdmin({children}) {
             <a href="#">My Account</a>
           </li>
           <li className="logout warn">
-            <a href="/">Log Out</a>
+            <a onClick={handleLogOut} href="/">Log Out</a>
           </li>
         </ul>
       </header>

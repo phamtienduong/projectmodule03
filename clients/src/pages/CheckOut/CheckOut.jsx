@@ -5,7 +5,7 @@ import { message } from 'antd';
 import {useNavigate} from "react-router-dom"
 export default function CheckOut() {
 
-    const userLogin = JSON.parse(localStorage.getItem("currentUser"))
+    const userLogin = JSON.parse(localStorage.getItem("user_login"))
     const [cart, setCart] = useState([])
 
     const [infoBill, setInfoBill] = useState({
@@ -53,7 +53,6 @@ export default function CheckOut() {
     }
 
     const checkOut = async () => {
-
         if (!provinceCode || !districtCode || !wardCode) {
             message.error("Điền đủ thông tin địa chỉ")
             return
@@ -72,15 +71,14 @@ export default function CheckOut() {
 
         const bill = {
             ...infoBill,
-            province: provinceName,
-            district: districtName,
-            ward: wardName,
+            address: `${wardName}:${districtName}:${provinceName}`,
             cart,
             total,
-            userId: userLogin.id,
+            userId: userLogin.userId,
             status: 0,
             createdAt: `${h}:${m}:${s}, ${dd}/${mm}/${yyyy}`
         }
+        console.log(bill);
 
         if (bill.cart.length == 0) {
             message.error("Không có sản phẩm để mua")
@@ -96,16 +94,34 @@ export default function CheckOut() {
             message.error("Email không hợp lệ")
             return
         }
+       
 
+        try {
+            const result = await axios.post("http://localhost:8080/api/v1/bill", bill)
+            console.log(result.data.newIdBill);
+            const billDetail = {
+                billId: result.data.newIdBill,
+                cart
+            }
 
-        const result = await axios.post("http://localhost:7500/bills", bill)
-        if (result.status === 201) {
-            message.success("Thành Công")
-            userLogin.cart = []
-            localStorage.setItem("currentUser", JSON.stringify(userLogin))
-            await axios.put(`http://localhost:7500/users/${userLogin.id}`, userLogin)
-            navigate("/bill")
+             await axios.post("http://localhost:8080/api/v1/billDetail",billDetail) 
+             await axios.delete(`http://localhost:8080/api/v1/carts/${userLogin.userId}`)
+             message.success({
+                message:"Thanh toán thành công"
+             })
+             setCart([])
+             navigate("/bill")
+        } catch (error) {
+            console.log(error);
         }
+        
+        // if (result.status === 201) {
+        //     message.success("Thành Công")
+        //     userLogin.cart = []
+        //     localStorage.setItem("currentUser", JSON.stringify(userLogin))
+        //     await axios.put(`http://localhost:7500/users/${userLogin.id}`, userLogin)
+        //     navigate("/bill")
+        // }
     }
 
     useEffect(() => {
@@ -114,25 +130,22 @@ export default function CheckOut() {
 
     // ==============================================================
 
-    const getCart = async () => {
-        const result = await axios.get(`http://localhost:7500/users/${userLogin.id}`)
-        const cart = result.data.cart
-
-        const newCartRender = []
-        for (let i = 0; i < cart.length; i++) {
-            const result = await axios.get(`http://localhost:7500/products/${cart[i].idProduct}`)
-            newCartRender.push({ ...result.data, quantity: cart[i].quantity })
-        }
-
-        setCart(newCartRender)
-    }
+    const getInfoProducts = async () => {
+        const token = localStorage.getItem("token");
+        const result = await axios.get(`http://localhost:8080/api/v1/cart`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setCart(result.data.data);
+      };
 
     const handleChangeInfo = (e) => {
         const { name, value } = e.target
         setInfoBill({ ...infoBill, [name]: value })
     }
     useEffect(() => {
-        getCart()
+        getInfoProducts()
     }, [])
 
 

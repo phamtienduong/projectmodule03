@@ -4,6 +4,11 @@ import axios from "axios";
 
 const renderColumns = (handleChangeActive) => [
   {
+    title: 'ID',
+    dataIndex: 'userId',
+    key: 'userId',
+  },
+  {
     title: "Email",
     dataIndex: "email",
     key: "email",

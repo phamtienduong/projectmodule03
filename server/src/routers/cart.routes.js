@@ -1,4 +1,5 @@
-const { addToCart, getInfoCart, deleteItemCart, updateQuantity, changeQuantity,  } = require("../controller/cart.controller")
+const { addToCart, getInfoCart, deleteItemCart, updateQuantity, changeQuantity, deleteCartPayment,  } = require("../controller/cart.controller")
+
 
 
 const cartRouter = (app)=>{
@@ -7,6 +8,7 @@ const cartRouter = (app)=>{
     app.delete("/api/v1/cart/delete/:id", deleteItemCart)
     app.patch("/api/v1/cart/",updateQuantity)
     app.patch("/api/v1/cart/quantity",changeQuantity);
+    app.delete("/api/v1/carts/:userId",deleteCartPayment )
 
 }
 module.exports = {

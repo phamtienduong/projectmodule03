@@ -48,30 +48,55 @@ async function deleteItemCartMySql(userId, productId) {
   }
 }
 async function changeQuantityMySql(id,type) {
+  const [data] = await db.execute(
+    "select * from cart where cartId = ?",
+    [id]
+  );
+  const [product] = await db.execute(
+    "select * from products where productId = ?",
+    [data[0].productId]
+  );
+  const stock = product[0].stock
   try {
     if (type == "incre") {
-      const [result] = await db.execute(
-        "update cart set quantity = quantity + 1 where cartId = ?",
-        [id]
-      );
-      return result.insertId;
+      if (data[0].quantity < stock) {
+        const [result] = await db.execute(
+          "update cart set quantity = quantity + 1 where cartId = ?",
+          [id]
+        );
+        return result.insertId;
+      } else {
+        return "SL ko du"
+      }
     } else {
-      const [result] = await db.execute(
-        "update cart set quantity = quantity - 1 where cartId = ?",
-        [id]
-      );
-      return result.insertId;
-
+      if (data[0].quantity > 1) {
+        const [result] = await db.execute(
+          "update cart set quantity = quantity - 1 where cartId = ?",
+          [id]
+        );
+        return result.insertId;
+      } else {
+        return "ko the tru tiep"
+      }
     }
     
   } catch (error) {
     console.log(error);
   }
 }
+async function deleteCartByUserId(userId) {
+  try {
+    const [result] = await db.execute("delete from cart where userId = ?",[userId])
+    return result
+  } catch (error) {
+    console.log(error);
+  }
+  
+}
 module.exports = {
   addToCartMySql,
   getInfoCartMySql,
   deleteItemCartMySql,
-  changeQuantityMySql
-  
+  changeQuantityMySql,
+  deleteCartByUserId
 };

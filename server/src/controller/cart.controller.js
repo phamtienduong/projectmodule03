@@ -5,6 +5,7 @@ const {
   deleteItemCartMySql,
   changeQuantityIncreaseMySql,
   changeQuantityMySql,
+  deleteCartByUserId,
 } = require("../repository/cart.repository");
 
 async function addToCart(req, res) {
@@ -156,6 +157,18 @@ async function changeQuantity(req, res) {
     
   }
 }
+async function deleteCartPayment(req,res) {
+  const {userId} = req.params
+  console.log(userId);
+  try {
+    await deleteCartByUserId(userId)
+    res.status(200).json({
+      message:"Xoá giỏ hàng thành công"
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 module.exports = {
@@ -164,4 +177,5 @@ module.exports = {
   deleteItemCart,
   updateQuantity,
   changeQuantity,
+  deleteCartPayment
 };

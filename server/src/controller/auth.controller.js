@@ -59,7 +59,8 @@ async function login(req, res) {
       // delete result.password;
       return res.status(200).json({
         message: "Đăng nhập thành công",
-        token
+        token,
+        result
       });
     } catch (error) {
       console.log("==>", checkPassword);

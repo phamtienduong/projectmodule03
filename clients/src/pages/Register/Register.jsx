@@ -36,7 +36,7 @@ export default function Register() {
       errConfirm: "",
     };
 
-    if (!regexName.test(nameInput.userName)) {
+    if (!regexName.test(nameInput.userName.trim())) {
       err.errName = "Tên có 6 ký tự trở lên";
       check = false;
     }

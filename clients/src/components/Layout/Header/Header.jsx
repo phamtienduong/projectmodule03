@@ -70,8 +70,7 @@ function classNames(...classes) {
 export default function Header({ isLogin, setIsLogin, setIsLoad }) {
     
     const userLogin = useSelector((state) => state.reducer.userLogin)
-    const [userLoginLocal, setUserLoginLocal] = useState(JSON.parse(localStorage.getItem("currentUser")) || {})
-    
+    const [userLoginLocal, setUserLoginLocal] = useState(JSON.parse(localStorage.getItem("user_login")) || {})
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const [category, setCategory] = useState([])
@@ -88,8 +87,8 @@ export default function Header({ isLogin, setIsLogin, setIsLoad }) {
     }
 
     const handleLogout = () => {
-        localStorage.setItem("currentUser", JSON.stringify(""));
-        // dispatch(action("setUserLogin"))
+        localStorage.clear();
+        dispatch(action("setUserLogin"))
         setUserLoginLocal({})
         setIsLogin(false)
         window.location.href = ("/login")
@@ -103,7 +102,7 @@ export default function Header({ isLogin, setIsLogin, setIsLoad }) {
 
     useEffect(() => {
         dispatch(action("setUserLogin"))
-        setUserLoginLocal(JSON.parse(localStorage.getItem("currentUser")))
+        setUserLoginLocal(JSON.parse(localStorage.getItem("user_login")))
         getCategory()
     }, [isLogin])
     return (
@@ -214,7 +213,7 @@ export default function Header({ isLogin, setIsLogin, setIsLoad }) {
                     </Link>
                 </Popover.Group>
 
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-4">
                     <Link to="#" className="text-lg font-semibold leading-6 text-gray-900">
                         <div className="InputContainer">
                             <input
@@ -237,7 +236,9 @@ export default function Header({ isLogin, setIsLogin, setIsLoad }) {
                                         <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />
                                             <span className="sr-only">Open user menu</span>
-                                            <span style={{backgroundColor: "white"}}>{userLoginLocal.email}</span>
+                                            <span style={{backgroundColor: "white"}}>
+                                                {userLoginLocal.userName}
+                                            </span>
 
                                         </Menu.Button> 
                                         :

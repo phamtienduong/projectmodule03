@@ -1,9 +1,10 @@
 import React from 'react'
 import "./Login.css"
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState } from 'react'
-import {message} from "antd"
+import { message } from "antd"
 import axios from 'axios'
+
 function Login() {
 
     const navigate = useNavigate()
@@ -18,21 +19,30 @@ function Login() {
     }
 
     const handleLogin = async () => {
-        
-        const response = await axios.post("http://localhost:8080/api/v1/auth/login",user)
-        console.log(response);
-        if (response.data.message == "Đăng nhập thành công") {
-            localStorage.setItem("admin_token", response.data.token)
+        try {
+            const response = await axios.post('http://localhost:8080/api/v1/auth/login', user);
+            console.log(response);
+            if (response.data.result.role !== 1) {
+                message.error('Bạn không có quyền đăng nhập vào admin');
+                return;
+            }
 
-            navigate("admin")           
-        } else {
-            message.error(response.data.message)
+            if (response.data.message === 'Đăng nhập thành công') {
+                localStorage.setItem('admin_token', response.data.token);
+                localStorage.setItem('user_login', JSON.stringify(response.data.result));
+                message.success(response.data.message);
+                navigate('admin');
+            } else {
+                message.error(response.data.message);
+            }
+        } catch (error) {
+            message.error(response.data.message);
         }
-    }
+    };
     return (
         <div>
             <div className="formLogin">
-                <h1 className='formTitle' id="formTitle" style={{padding: 0}}>Đăng nhập</h1>
+                <h1 className='formTitle' id="formTitle" style={{ padding: 0 }}>Đăng nhập</h1>
                 <div className="inputLogin">
                     <form>
                         <label htmlFor="email" /><br />

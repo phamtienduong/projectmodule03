@@ -97,7 +97,6 @@ async function updateOutStockProduct(req, res) {
   }
 }
 async function getProductsBySearch(req,res) {
-  console.log("chay vao router");
     const {nameProduct} = req.query
   try {
     const result = await getProductsByName(nameProduct)

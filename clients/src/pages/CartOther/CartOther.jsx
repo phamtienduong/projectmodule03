@@ -8,7 +8,7 @@ export default function CartOther() {
   const [cart, setCart] = useState([]);
   const [flag, setFlag] = useState(false);
 
-  const [onUpdateQuantity, setOnUpdateQuantity] = useState([]);
+
 
   // tính toán tổng tiền
   let totalMoney = cart.reduce((total, current) => {
@@ -50,13 +50,13 @@ export default function CartOther() {
     }
   };
 
-  const cancel = (e) => {};
+  const cancel = (e) => { };
 
   // chỉnh số lượng các sản phẩm
   const handleIncrease = async (id) => {
     const body = { cartId: id, type: "incre" };
     try {
-      await axios.patch(`http://localhost:8080/api/v1/cart/quantity`,body);
+      await axios.patch(`http://localhost:8080/api/v1/cart/quantity`, body);
       setFlag(!flag)
     } catch (error) {
       console.log(error);
@@ -70,12 +70,13 @@ export default function CartOther() {
     } catch (error) {
       console.log(error);
     }
+
   };
 
   // mua hàng
   const handleCheckout = async () => {
-    const token = localStorage.getItem("token");
-    await axios.get(`http://localhost:8080/api/users/${token.userId}`, token);
+    // const token = localStorage.getItem("token");
+    // await axios.get(`http://localhost:8080/api/users/${token.userId}`, token);
     navigate("/checkout");
   };
 
@@ -121,11 +122,11 @@ export default function CartOther() {
                     </span>
                   </td>
                   <td>
-                    <button className="btn-quantity" onClick={()=>handleDecrease(item.cartId)}>
+                    <button className="btn-quantity" onClick={() => handleDecrease(item.cartId)}>
                       -
                     </button>
                     <span className="ml-4 mr-4">{item.quantity}</span>
-                    <button className="btn-quantity" onClick={()=>handleIncrease(item.cartId)}>
+                    <button className="btn-quantity" onClick={() => handleIncrease(item.cartId)}>
                       +
                     </button>
                   </td>

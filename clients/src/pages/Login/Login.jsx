@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { message, notification } from "antd";
@@ -24,9 +24,11 @@ export default function Login({ setIsLogin }) {
     try{
       const res = await axios.post("http://localhost:8080/api/v1/auth/login",user)
       notification.success(res.data)
-      // console.log(res);
+      console.log(res);
       if (res.data.token) {
         localStorage.setItem("token",res.data.token)
+        localStorage.setItem('user_login', JSON.stringify(res.data.result));
+        setIsLogin(true)
         navigate("/"); 
       }
     }
@@ -34,6 +36,7 @@ export default function Login({ setIsLogin }) {
       notification.error(error.response.data)
     }
   }
+
   return (
     <div>
       <div className="formLogin">
